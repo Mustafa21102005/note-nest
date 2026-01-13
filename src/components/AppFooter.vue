@@ -4,7 +4,7 @@ const year = new Date().getFullYear()
 
 <template>
     <footer>
-        Note-Nest &copy; {{ year }}
+        &copy; Note-Nest {{ year }} By <span class="rainbow-text">Mustafa</span>
     </footer>
 </template>
 
