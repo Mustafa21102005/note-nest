@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Menubar from 'primevue/menubar'
+import { Toast } from 'primevue'
 import { ref } from "vue"
 import AppFooter from './components/AppFooter.vue';
 
@@ -8,8 +9,12 @@ const items = ref([
   {
     label: 'Home',
     route: '/'
+  },
+  {
+    label: 'My Notes',
+    route: '/notes'
   }
-]);
+])
 </script>
 
 <template>
@@ -26,6 +31,7 @@ const items = ref([
 
   <!-- Content -->
   <main>
+    <Toast />
     <RouterView />
   </main>
 
