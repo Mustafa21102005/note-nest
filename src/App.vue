@@ -1,24 +1,22 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import Menubar from 'primevue/menubar'
-import { Toast } from 'primevue'
-import { ref } from "vue"
-import AppFooter from './components/AppFooter.vue';
+import { Toast, Menubar, ConfirmDialog } from 'primevue'
+import { ref } from 'vue'
+import AppFooter from './components/AppFooter.vue'
 
 const items = ref([
   {
     label: 'Home',
-    route: '/'
+    route: '/',
   },
   {
-    label: 'My Notes',
-    route: '/notes'
-  }
+    label: 'Notes',
+    route: '/notes',
+  },
 ])
 </script>
 
 <template>
-  <!-- Navbar -->
   <Menubar :model="items">
     <template #item="{ item, props }">
       <RouterLink v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
@@ -29,24 +27,71 @@ const items = ref([
     </template>
   </Menubar>
 
-  <!-- Content -->
   <main>
     <Toast />
+    <ConfirmDialog />
     <RouterView />
   </main>
 
-  <!-- Footer -->
   <AppFooter />
 </template>
 
 <style>
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 380px;
+  margin: 0.75rem 0 1rem;
+}
+
+.save-btn {
+  min-width: 140px;
+}
+
+.field {
+  flex: 1;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
 .rainbow-text {
-  background: linear-gradient(90deg,
-      #8b5cf6,
-      #6366f1,
-      #3b82f6,
-      #06b6d4,
-      #ec4899);
+  background: linear-gradient(90deg, #8b5cf6, #6366f1, #3b82f6, #06b6d4, #ec4899);
+}
+
+.vue-text {
+  background: linear-gradient(90deg, #42b883, #3fb984, #35495e);
+}
+
+.rainbow-text,
+.vue-text {
   background-size: 300% 300%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -55,12 +100,13 @@ const items = ref([
   transition: filter 0.3s ease;
 }
 
-.rainbow-text:hover {
-  animation: rainbow 2s ease infinite;
+.rainbow-text:hover,
+.vue-text:hover {
   filter: brightness(1.15);
+  animation: text-movement 2s ease infinite;
 }
 
-@keyframes rainbow {
+@keyframes text-movement {
   0% {
     background-position: 0% 50%;
   }

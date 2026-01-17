@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import profileImage from '../../public/images/mustafa.png'
 import websiteImage from '../../public/favicon/favicon.svg'
 import { Button } from 'primevue'
@@ -7,7 +7,9 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const profileTitle = 'Hey That\'s Me!'
+const isFading = ref(false)
+
+const profileTitle = "Hey That's Me!"
 const websiteTitle = 'Note-Nest'
 
 const profileAlt = 'Profile Picture'
@@ -17,46 +19,60 @@ const currentImage = ref(websiteImage)
 const currentTitle = ref(websiteTitle)
 const currentAlt = ref(websiteAlt)
 
-const showProfile = () => {
-  currentImage.value = profileImage
-  currentTitle.value = profileTitle
-  currentAlt.value = websiteAlt
-}
-
-const showWebsite = () => {
-  currentImage.value = websiteImage
-  currentTitle.value = websiteTitle
-  currentAlt.value = profileAlt
-}
-
 const goToCreateNote = () => {
   router.push({ name: 'create-note' })
 }
 
-onMounted(() => {
-  const preloadImages = [profileImage, websiteImage]
-  preloadImages.forEach(src => {
-    const img = new Image()
-    img.src = src
-  })
-})
+const preload = (src) => {
+  const img = new Image()
+  img.src = src
+  img.decode?.()
+}
+
+preload(profileImage)
+preload(websiteImage)
+
+const showProfile = () => {
+  if (currentImage.value === profileImage) return
+
+  isFading.value = true
+  setTimeout(() => {
+    currentImage.value = profileImage
+    currentTitle.value = profileTitle
+    currentAlt.value = profileAlt
+    isFading.value = false
+  }, 300)
+}
+
+const showWebsite = () => {
+  if (currentImage.value === websiteImage) return
+
+  isFading.value = true
+  setTimeout(() => {
+    currentImage.value = websiteImage
+    currentTitle.value = websiteTitle
+    currentAlt.value = websiteAlt
+    isFading.value = false
+  }, 300)
+}
 </script>
 
 <template>
   <div class="home-container">
     <header>
       <div>
-        <transition name="fade" mode="out-in">
-          <img :src="currentImage" :key="currentImage" :alt="currentAlt" :title="currentTitle">
-        </transition>
+        <img :src="currentImage" :alt="currentAlt" :title="currentTitle" class="fade-img"
+          :class="{ fading: isFading }" />
       </div>
       <div>
         <h1>Welcome to <span class="rainbow-text" @mouseover="showWebsite">Note-Nest</span>!</h1>
-        <h4>A note taking web app made by
+        <h4>
+          A note taking web app made by
           <span @mouseover="showProfile" class="rainbow-text">
             <a href="https://github.com/Mustafa21102005" target="_blank">Mustafa</a>
           </span>
-          so he can learn <span class="vue-text"><a href="https://vuejs.org/" target="_blank">VUE</a></span>.
+          so he can learn
+          <span class="vue-text"><a href="https://vuejs.org/" target="_blank">VUE</a></span>.
         </h4>
         <Button label="Start Now!" severity="primary" raised @click="goToCreateNote" />
       </div>
@@ -82,50 +98,12 @@ header img {
   border-radius: 50%;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.fade-enter-to,
-.fade-leave-from {
+.fade-img {
   opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-.vue-text {
-  background: linear-gradient(90deg,
-      #42b883,
-      #3fb984,
-      #35495e);
-  background-size: 300% 300%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  cursor: pointer;
-  transition: filter 0.3s ease;
-}
-
-.vue-text:hover {
-  animation: vue 2s ease infinite;
-  filter: brightness(1.15);
-}
-
-@keyframes vue {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+.fade-img.fading {
+  opacity: 0;
 }
 </style>
