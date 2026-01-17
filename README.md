@@ -1,44 +1,64 @@
-# Note-Nest
+# 📝 Note-Nest
 
-This template should help get you started developing with Vue 3 in Vite.
+A clean and simple note-taking web application built with **Vue 3** and **PrimeVue**.
+This project was created as a hands-on way to deeply understand Vue’s core concepts such as reactivity, routing, component structure, and state persistence.
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## ✨ Features
 
-## Recommended Browser Setup
+- 🆕 Create notes with a title, content, and tags
+- ✏️ Edit existing notes
+- 🗑️ Delete notes with confirmation dialog
+- 🏷️ Add and remove tags (with duplicate protection)
+- 💾 Persistent storage using `localStorage`
+- 🔔 User feedback with toasts and dialogs
+- 📱 Fully responsive layout
+- 🚀 Smooth navigation using Vue Router
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+---
 
-## Customize configuration
+## 🛠️ Tech Stack
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- **Vue 3** (Composition API)
+- **Vue Router**
+- **PrimeVue** (UI components)
+- **PrimeIcons**
+- **localStorage** (for persistence)
+- **Vite**
 
-## Project Setup
+---
 
-```sh
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repository
+
+```
+git clone https://github.com/Mustafa21102005/note-nest.git
+```
+
+### 2️⃣ Install Dependencies
+
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 3️⃣ Run the Devvelopment Server
 
-```sh
+```
 npm run dev
 ```
 
-### Compile and Minify for Production
+---
 
-```sh
-npm run build
-```
+## 📧 Author
 
-### Lint with [ESLint](https://eslint.org/)
+**Mustafa Azmi Khalil**
 
-```sh
-npm run lint
-```
+📬 [Email Me](mailto:mustafa.azmi.khalil@gmail.com)
+
+- 📷 [Instagram](https://www.instagram.com/rexl.05)
+- 💬 [WhatsApp](https://wa.me/966545117570)
+- 👾 [Reddit](https://www.reddit.com/user/mustafa_azmi)
+
+Please feel free to star ⭐ this repo if you find it useful!
