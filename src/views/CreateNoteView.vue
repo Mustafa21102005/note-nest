@@ -1,46 +1,14 @@
 <script setup>
 import { InputText, IftaLabel, FloatLabel, Textarea, Button, Chip, useToast } from 'primevue'
-import { ref, onMounted, watch } from 'vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useTags } from '@/composables/useTags'
 
 const title = ref('')
 const note = ref('')
-const tag = ref('')
-const tags = ref([])
 const toast = useToast()
-
-const addTag = () => {
-  const value = tag.value.trim()
-
-  if (!value) return
-
-  if (tags.value.includes(value)) {
-    toast.add({
-      severity: 'error',
-      summary: 'Duplicate Tag',
-      detail: `"${value}" is already added!`,
-      life: 4000
-    })
-    return
-  }
-
-  tags.value.push(value)
-  tag.value = ''
-}
-
-onMounted(() => {
-  const savedTags = localStorage.getItem('tags')
-  if (savedTags) {
-    tags.value = JSON.parse(savedTags)
-  }
-})
-
-watch(tags, (newTags) => {
-  localStorage.setItem('tags', JSON.stringify(newTags))
-}, { deep: true })
-
-const removeTag = (t) => {
-  tags.value = tags.value.filter(tag => tag !== t)
-}
+const router = useRouter()
+const { tag, tags, addTag, removeTag } = useTags(toast)
 
 const saveNote = () => {
   if (!note.value.trim()) {
@@ -48,7 +16,7 @@ const saveNote = () => {
       severity: 'warn',
       summary: 'Empty Note',
       detail: 'You cannot save an empty note.',
-      life: 3000
+      life: 3000,
     })
     return
   }
@@ -60,7 +28,7 @@ const saveNote = () => {
     title: noteTitle,
     note: note.value,
     tags: [...tags.value],
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   }
 
   // Load existing notes
@@ -77,8 +45,10 @@ const saveNote = () => {
     severity: 'success',
     summary: 'Saved',
     detail: 'Your note has been saved!',
-    life: 3000
+    life: 3000,
   })
+
+  router.push({ path: '/notes' })
 
   // Reset form
   title.value = ''
@@ -92,7 +62,7 @@ const saveNote = () => {
   <div class="center">
     <h1>
       Save Your Note Here
-      <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f609/512.gif" width="28" height="28">
+      <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f609/512.gif" width="28" height="28" />
     </h1>
 
     <div>
@@ -109,7 +79,7 @@ const saveNote = () => {
         </IftaLabel>
       </div>
 
-      <!-- Tags -->
+      <!-- Added Tags -->
       <div class="tag-container">
         <Chip v-for="t in tags" :key="t" :label="t" removable @remove="removeTag(t)" />
       </div>
@@ -128,50 +98,3 @@ const saveNote = () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 3rem 0;
-}
-
-.tag-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  max-width: 380px;
-  margin: 0.75rem 0 1rem;
-}
-
-.mt-1 {
-  margin-top: 1rem;
-}
-
-.row {
-  display: flex;
-  gap: 1rem;
-  width: 100%;
-}
-
-.button-row {
-  display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
-}
-
-.save-btn {
-  min-width: 140px;
-}
-
-.field {
-  flex: 1;
-}
-
-@media (max-width: 640px) {
-  .row {
-    flex-direction: column;
-  }
-}
-</style>
