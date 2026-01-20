@@ -5,6 +5,15 @@ This project was created as a hands-on way to deeply understand Vue’s core con
 
 ---
 
+# 🔗 Check It Out!
+
+👉 Live Demo:
+https://mustafa21102005.github.io/note-nest/
+
+Explore the app directly in your browser — no setup required.
+
+---
+
 ## ✨ Features
 
 - 🆕 Create notes with a title, content, and tags
