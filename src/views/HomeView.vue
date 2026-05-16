@@ -61,8 +61,13 @@ const showWebsite = () => {
   <div class="home-container">
     <header>
       <div>
-        <img :src="currentImage" :alt="currentAlt" :title="currentTitle" class="fade-img"
-          :class="{ fading: isFading }" />
+        <img
+          :src="currentImage"
+          :alt="currentAlt"
+          :title="currentTitle"
+          class="fade-img"
+          :class="{ fading: isFading }"
+        />
       </div>
       <div>
         <h1>Welcome to <span class="rainbow-text" @mouseover="showWebsite">Note-Nest</span>!</h1>
@@ -72,7 +77,8 @@ const showWebsite = () => {
             <a href="https://github.com/Mustafa21102005" target="_blank">Mustafa</a>
           </span>
           so he can learn
-          <span class="vue-text"><a href="https://vuejs.org/" target="_blank">VUE</a></span>.
+          <span class="vue-text"><a href="https://vuejs.org/" target="_blank">VUE</a></span
+          >.
         </h4>
         <Button label="Start Now!" severity="primary" raised @click="goToCreateNote" />
       </div>
