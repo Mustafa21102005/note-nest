@@ -7,11 +7,11 @@ import AppFooter from './components/AppFooter.vue'
 const items = ref([
   {
     label: 'Home',
-    route: '/',
+    route: { name: 'home' },
   },
   {
     label: 'Notes',
-    route: '/notes',
+    route: { name: 'notes' },
   },
 ])
 </script>

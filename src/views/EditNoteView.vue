@@ -109,8 +109,14 @@ const updateNote = () => {
       </div>
 
       <div class="button-row">
-        <Button label="Cancel" severity="secondary" raised class="save-btn" style="margin-right: 1rem"
-          @click="goToNote()" />
+        <Button
+          label="Cancel"
+          severity="secondary"
+          raised
+          class="save-btn"
+          style="margin-right: 1rem"
+          @click="goToNote()"
+        />
         <Button label="Update" raised class="save-btn" @click="updateNote()" />
       </div>
     </div>

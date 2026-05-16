@@ -62,7 +62,11 @@ const saveNote = () => {
   <div class="center">
     <h1>
       Save Your Note Here
-      <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f609/512.gif" width="28" height="28" />
+      <img
+        src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f609/512.gif"
+        width="28"
+        height="28"
+      />
     </h1>
 
     <div>
