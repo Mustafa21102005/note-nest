@@ -42,20 +42,34 @@ Explore the app directly in your browser — no setup required.
 
 ### 1️⃣ Clone the repository
 
-```
+```bash
 git clone https://github.com/Mustafa21102005/note-nest.git
 ```
 
 ### 2️⃣ Install Dependencies
 
-```
+```bash
+# npm
 npm install
+
+# pnpm
+pnpm install
+
+# bun
+bun install
 ```
 
-### 3️⃣ Run the Devvelopment Server
+### 3️⃣ Run the Development Server
 
-```
+```bash
+# npm
 npm run dev
+
+# pnpm
+pnpm run dev
+
+# bun
+bun run dev
 ```
 
 ---
